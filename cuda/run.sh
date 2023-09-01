@@ -36,14 +36,15 @@
 # Build the project
 make build
 
-# Get the number of available CPU threads
+# Get the number of available CPU threads. Limit it to 4 because the GPU is doing the heavy lifting
 n_threads=$(grep -c ^processor /proc/cpuinfo)
+n_threads=$((n_threads<4 ? n_threads : 4))
 
 # Define context window
 n_ctx=4096
 
 # Offload layers to GPU
-n_gpu_layers=10
+n_gpu_layers=10000000 # This is an arbitrary large number so that all of the layers are offloaded to the GPU
 
 # Define batch size based on total RAM
 total_ram=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
