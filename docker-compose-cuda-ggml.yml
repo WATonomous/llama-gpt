@@ -25,7 +25,14 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              device_ids: [
+                #"GPU-3d3327d9-d2f2-05b3-2061-07ce80ce1054", # NVIDIA GeForce RTX 4090, 00000000:01:00.0
+                "GPU-7847138a-3978-d283-a387-fcdf5fd24b91", # NVIDIA GeForce RTX 3090, 00000000:02:00.0 7B: 100 tok/s | 13B: 70 tok/s | 70B: 13 tok/s with GPU-6b62a18f-dba7-233b-8659-50cbcd88cb60, 15 tok/s with GPU-65eca926-30fc-8663-839b-e75b05b90267
+                "GPU-65eca926-30fc-8663-839b-e75b05b90267", # NVIDIA GeForce RTX 4090, 00000000:03:00.0 7B: 130 tok/s, 13B: 80 tok/s
+                #"GPU-41f84128-c4eb-21bf-e264-1bd3ac790f6b", # NVIDIA GeForce RTX 3090, 00000000:04:00.0
+                #"GPU-6b62a18f-dba7-233b-8659-50cbcd88cb60", # NVIDIA GeForce RTX 3090, 00000000:05:00.0
+                #"GPU-79c70fca-a3e6-6b62-3554-1d4b81fdccb4", # NVIDIA GeForce RTX 3090, 00000000:06:00.0
+              ]
               capabilities: [gpu]
 
   llama-gpt-ui:
